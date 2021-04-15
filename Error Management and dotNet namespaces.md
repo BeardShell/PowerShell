@@ -14,13 +14,13 @@ Take this example of PowerShell code:
 try {
   Get-ChildItem x: -ErrorAction Stop    # Using the erroraction with Get-ChildItem is needed or you'll never get to your catch block
 } catch {
-  Write-Output "Where in the catch area"
+  Write-Output "We are in the catch area"
   Write-Output $PSItem
 }
 ```
 The thrown error is the following:
 ```powershell
-Where in the catch area
+We are in the catch area
 Get-ChildItem : Cannot find drive. A drive with the name 'x' does not exist.
 At line:2 char:5
 +     Get-ChildItem x: -ErrorAction Stop
