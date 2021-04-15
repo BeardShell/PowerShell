@@ -5,3 +5,10 @@
 Get your PowerShell version:
 ```powershell
 $PSVersionTable.PSVersion
+```
+
+Write your scripts and functions with strict error notifications
+```powershell
+Set-StrictMode -Version Latest
+```
+
