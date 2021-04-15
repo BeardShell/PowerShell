@@ -19,7 +19,7 @@ Add support for TLS 1.2. This is often an issue when using the PowerShell Galler
 
 When the PowerShell Gallery is next level broken use the following function:
 ```powershell
-Function Reset-PowerShellGalleryStuff {
+Function Reset-BrokenPowerShellGallery {
   #Sometimes everything to use the PowerShell Gallery, NuGet and all that stuff is just plain old broken.
   #To fix it there are several steps. Just run this function if necessary and try what you wanted to do again.
 
@@ -29,3 +29,11 @@ Function Reset-PowerShellGalleryStuff {
 }
 ```
 > This function is not written by me. Credits to the original author (When I find the name of this guy, I'll edit this note)
+
+Make certain blocks of code collapsable if you are into nifty and clean coding. Using region blocks:
+```powershell
+#region choose your own name
+Write-Output "All your code that you choose to be inside the region goes here. Most IDE's support collapsing regions"
+#endregion
+```
+
