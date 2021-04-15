@@ -30,13 +30,14 @@ At line:2 char:5
 ```
 
 In the given error message you see the line starting with + FullyQualifiedErrorId. Followed with the "DriveNotFound" addition.
-We look up the "DriveNotFound" text in the big list of .net exceptions and we find the following: System.IO.DriveNotFoundException
+We look up the "DriveNotFound" text in the big list of .net exceptions and we find the following: System.IO.DriveNotFoundException and we also find System.Management.Automation.DriveNotFoundException. 
+I'm not explaining the difference between the two here, try them both out and you'll see that the first one doesn't work and the second one does.
 With that particular .net namespace we can catch this specific error:
 
 ```powershell
 try {
   Get-ChildItem x: -ErrorAction Stop    # Using the erroraction with Get-ChildItem is needed or you'll never get to your catch block
-} catch [System.IO.DriveNotFoundException] {
+} catch [System.Management.Automation.DriveNotFoundException] {
   Write-Output "The given drive is not found.."
   Write-Output $PSItem
 } catch {
@@ -44,7 +45,14 @@ try {
   Write-Output $PSItem
 }
 ```
-As you can see we edited the catch block with the .net namespace. When a certain drive is not found you can return a specific error as output.
+Now the output is as follows:
+```powershell
+The given drive is not found..
+Cannot find drive. A drive with the name 'x' does not exist.
+    + CategoryInfo          : ObjectNotFound: (x:String) [], DriveNotFoundException
+    + FullyQualifiedErrorId : DriveNotFound
+```
+As you can see we edited the catch block with the .net namespace. Now you can return a specific error as output when he DriveNotFound exception happens.
 Other errors go in the catch block at the end.
 Catch as many errors as you like. That way you have proper control over your script and the errors that might occur.
 
